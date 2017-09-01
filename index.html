@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Find A Citi Bike</title>
+        <script
+          src="https://code.jquery.com/jquery-3.2.1.min.js"
+          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+          crossorigin="anonymous"></script>
+        <link href="index.css" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    </head>
+    <body>
+      <main>
+        <h1>Find A Citi Bike</h1>
+          <form action="#" class="js-search-form">
+            <input id="pac-input" class="controls" type="text" placeholder="Enter Address">
+          </form>
+          
+          <div id="map"></div>
+
+
+      </main>
+      <script src="index.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwl8AK9K-T03AnIEtQlgxVYlYsZD73tMU&libraries=places&callback=initAutocomplete" async defer></script>
+    </body>
+</html>

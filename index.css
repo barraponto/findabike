@@ -1,0 +1,26 @@
+body {
+  font-family: Roboto, Sans-Serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  background-color: #eeeeee;
+  padding: 10px;
+}
+
+
+#map {
+	margin-top: 40px;
+	height: 500px;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#pac-input {
+	width: 40%;
+	height: 30px;
+
+}
