@@ -38,8 +38,11 @@ function initAutocomplete() {
           console.log(searchLng)
           console.log(searchLat)
 
+
           sortBikeDocksByLocation(bikeDocks);
           console.log("Bike Docks Sorted");
+          addNumBikesAvailableToArray(bikeDocks);
+          
 
           // Clear out the old markers.
           markers.forEach(function(marker) {
@@ -86,8 +89,10 @@ function getBikeDocks() {
       for (let i = 0; i < results.data.stations.length; i++) {
         bikeDocks.push({
           'station_id': results.data.stations[i].station_id,
+          'station_name': results.data.stations[i].name,
           'lat': results.data.stations[i].lat,
-          'lng': results.data.stations[i].lon
+          'lng': results.data.stations[i].lon,
+          'num_bikes_available': ''
         });
       }
   });
@@ -102,10 +107,39 @@ function sortByLocation(a, b) {
     return -1;
   }
   else {
-    return 1
+    return 1;
   }
 };
 
+function addNumBikesAvailableToArray(array) {
+  for (let i = 0; i < 10; i++) {
+    getNumBikesAvailable(array, i);
+  }
+}
+
+function getNumBikesAvailable(array, index) {
+$.getJSON("http://gbfs.citibikenyc.com/gbfs/en/station_status.json", function(results) {  
+  for (let i = 0; i < results.data.stations.length; i++) {
+    if (results.data.stations[i].station_id === array[index]['station_id']) {
+      bikeDocks[index]['num_bikes_available'] = results.data.stations[i].num_bikes_available;
+    }
+  }
+  });
+}
+
+function displayBikeLocation() {
+  for (let i = 0; i < 10; i++) {
+    if (bikeDocks[i]['num_bikes_available'] > 2) {
+      renderResult(i);
+      break;
+    }
+  }
+}
+
+
+function renderResult(index) {
+  $('.js-search-result').html(`<div class="result">The ${bikeDocks[index].station_name} station has ${bikeDocks[index]['num_bikes_available']} bikes available</div>`);
+}
 
 $(getBikeDocks());
 $(initAutocomplete());
