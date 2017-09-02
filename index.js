@@ -1,12 +1,24 @@
 let searchLng;
 let searchLat;
 let indexOfBikeFound = 0;
-let bikeDocks = [ ];
-let markers = [ ];
+let bikeDocks = [];
+let markers = [];
 
 
-function setMarkers() {
+function addMarker(lat, lng) {
+  var map = new google.maps.Map(document.getElementById('map'), {
+          center: {'lat': lat, 'lng': lng},
+          zoom: 19,
+          mapTypeId: 'roadmap'
+        });
 
+  var myLatLng = {'lat': lat, 'lng': lng};
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'CitiBike'
+    });
 }
 
 function initAutocomplete() {
@@ -26,7 +38,7 @@ function initAutocomplete() {
           searchBox.setBounds(map.getBounds());
         });
 
-        var markers = [];
+        
         // Listen for the event fired when the user selects a prediction and retrieve
         // more details for that place.
         searchBox.addListener('places_changed', function() {
@@ -40,12 +52,6 @@ function initAutocomplete() {
           searchLat = places[0].geometry.location.lat();
 
           findBike();
-
-
-          /*Code should wait until after findBike() is executed then look for new markers; create new function for markers */
-
-          /*marker[0].position = `"${bikeDocks[indexOfBikeFound]['lat']}, ${bikeDocks[indexOfBikeFound]['lng']}"`;*/
-          
 
           // Clear out the old markers.
           markers.forEach(function(marker) {
@@ -132,6 +138,7 @@ $.getJSON("https://gbfs.citibikenyc.com/gbfs/en/station_status.json", function(r
     }
   }
   displayBikeLocation();
+  addMarker(bikeDocks[indexOfBikeFound]['lat'], bikeDocks[indexOfBikeFound]['lng']);
   });
 }
 
