@@ -8,7 +8,7 @@ let markers = [];
 function addMarker(lat, lng) {
   var map = new google.maps.Map(document.getElementById('map'), {
           center: {'lat': lat, 'lng': lng},
-          zoom: 19,
+          zoom: 17,
           mapTypeId: 'roadmap'
         });
 
@@ -17,8 +17,15 @@ function addMarker(lat, lng) {
   var marker = new google.maps.Marker({
     position: myLatLng,
     map: map,
-    title: 'CitiBike'
+    title: 'CitiBike',
     });
+
+  var searchMarker = new google.maps.Marker({
+    position: {'lat': searchLat, 'lng': searchLng},
+    map: map,
+    title: 'Search Location'
+    });
+
 }
 
 function initAutocomplete() {
@@ -32,12 +39,10 @@ function initAutocomplete() {
         var input = document.getElementById('pac-input');
         var searchBox = new google.maps.places.SearchBox(input);
         
-
         // Bias the SearchBox results towards current map's viewport.
         map.addListener('bounds_changed', function() {
           searchBox.setBounds(map.getBounds());
         });
-
         
         // Listen for the event fired when the user selects a prediction and retrieve
         // more details for that place.
@@ -58,39 +63,6 @@ function initAutocomplete() {
             marker.setMap(null);
           });
           markers = [];
-
-          // For each place, get the icon, name and location.
-          var bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
-            if (!place.geometry) {
-              console.log("Returned place contains no geometry");
-              return;
-            }
-            var icon = {
-              url: place.icon,
-              size: new google.maps.Size(71, 71),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(25, 25)
-            };
-
-            // Create a marker for each place.
-            markers.push(new google.maps.Marker({
-              map: map,
-              icon: icon,
-              title: place.name,
-              position: place.geometry.location
-            }));
-
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
-          });
-          map.fitBounds(bounds);
-
         });
       }
 
