@@ -14,10 +14,19 @@ function addMarker(lat, lng) {
 
   var myLatLng = {'lat': lat, 'lng': lng};
 
+  var image = {
+    url: "http://www.clker.com/cliparts/q/I/Q/u/Z/1/marker-hi.png",
+    size: new google.maps.Size(22, 44),
+    origin: new google.maps.Point(0,0),
+    anchor: new google.maps.Point(17, 34),
+    scaledSize: new google.maps.Size(22, 44)
+  };
+
   var marker = new google.maps.Marker({
     position: myLatLng,
     map: map,
     title: 'CitiBike',
+    icon: image
     });
 
   var searchMarker = new google.maps.Marker({
