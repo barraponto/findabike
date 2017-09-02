@@ -2,7 +2,12 @@ let searchLng;
 let searchLat;
 let indexOfBikeFound = 0;
 let bikeDocks = [ ];
+let markers = [ ];
 
+
+function setMarkers() {
+
+}
 
 function initAutocomplete() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -36,7 +41,10 @@ function initAutocomplete() {
 
           findBike();
 
-          /*places[0] = `"${bikeDocks[indexOfBikeFound]['lat']}, ${bikeDocks[indexOfBikeFound]['lng']}"`;*/
+
+          /*Code should wait until after findBike() is executed then look for new markers; create new function for markers */
+
+          /*marker[0].position = `"${bikeDocks[indexOfBikeFound]['lat']}, ${bikeDocks[indexOfBikeFound]['lng']}"`;*/
           
 
           // Clear out the old markers.
@@ -113,6 +121,7 @@ function addNumBikesAvailableToArray() {
   for (let i = 0; i < 10; i++) {
     getNumBikesAvailable(i);
   }
+  
 }
 
 function getNumBikesAvailable(index) {
@@ -122,6 +131,7 @@ $.getJSON("https://gbfs.citibikenyc.com/gbfs/en/station_status.json", function(r
       bikeDocks[index]['num_bikes_available'] = results.data.stations[i].num_bikes_available;
     }
   }
+  displayBikeLocation();
   });
 }
 
@@ -142,8 +152,6 @@ function renderResult(index) {
 function findBike() {
   sortBikeDocksByLocation(bikeDocks);
   addNumBikesAvailableToArray();
-  displayBikeLocation();
-  console.log(bikeDocks[0]);
 }
 
 $(getBikeDocks());
