@@ -13,13 +13,21 @@
     </head>
     <body>
       <main>
-        <h1>Find A Citi Bike</h1>
-          <form action="#" class="js-search-form">
-            <input id="pac-input" class="controls" type="text" placeholder="Enter Address">
-          </form>
-          
+
+      <div class="background-image"></div>
+
+        <div class="opening-page">
+          <img src="https://d21xlh2maitm24.cloudfront.net/nyc/CitiBike_Logo_p.svg?mtime=20160427183115" alt="citibike logo">
+          <h1>Find A Bike</h1>
+            <form action="#" class="js-search-form">
+              <input id="pac-input" class="controls" type="text" placeholder="Enter Address to Find Bike">
+            </form>
+        </div>
+        
+        <div class="result-page" style="display: none">
           <div class="js-search-result"></div>
           <div id="map"></div>
+        </div>
 
 
       </main>

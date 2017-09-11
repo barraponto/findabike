@@ -1,8 +1,8 @@
 let searchLng;
 let searchLat;
-let indexOfBikeFound = 0;
 let bikeDocks = [];
 let markers = [];
+let indexOfBikeFound;
 
 
 function addMarker(lat, lng) {
@@ -142,5 +142,13 @@ function findBike() {
   addNumBikesAvailableToArray();
 }
 
+function submitAddress() {
+  $('.js-search-form').on('submit', event=> {
+    $('.result-page').attr('style', 'display: display');
+  });
+}
+
+
+$(submitAddress());
 $(getBikeDocks());
 $(initAutocomplete());

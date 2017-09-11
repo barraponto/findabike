@@ -5,16 +5,41 @@ body {
   box-sizing: border-box;
 }
 
-h1 {
-  background-color: #eeeeee;
-  padding: 10px;
+.opening-page {
+	margin-top: 80px;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	margin-bottom: 30px;
 }
 
+.opening-page h1 {
+	color: #0d2872;
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.opening-page img {
+	width: 25%;
+}
+
+.result-page {
+	width: 80%;
+	border-radius: 10px;
+	background-color: #efefef;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+}
 
 #map {
 	margin-top: 20px;
 	margin-bottom: 40px;
-	height: 500px;
+	height: 400px;
 	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
@@ -22,10 +47,13 @@ h1 {
 
 #pac-input {
 	width: 40%;
-	height: 30px;
+	height: 35px;
+	font-size: 15px;
+	text-align: center;
 }
 
 .js-search-result {
 	margin-top: 20px;
 	text-align: center;
+	color: #0d2872;
 }
