@@ -148,7 +148,5 @@ function submitAddress() {
   });
 }
 
-
-$(submitAddress());
-$(getBikeDocks());
-$(initAutocomplete());
+getBikeDocks();
+$(document).ready(submitAddress);
